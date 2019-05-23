@@ -10,4 +10,4 @@ cache:
   pip: true
 install:
   - pip install -r requirements.txt
-script: rpnpt test_.robot
+script: robot tests/test_homepage.robot
