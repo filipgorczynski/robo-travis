@@ -1,0 +1,13 @@
+notifications:
+  email: false
+
+language: python
+python:
+  - "3.7"
+dist: xenial
+sudo: true
+cache:
+  pip: true
+install:
+  - pip install -r requirements.txt
+script: rpnpt test_.robot
