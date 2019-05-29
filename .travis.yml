@@ -21,6 +21,7 @@ cache:
   # - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 before_install:
   - mkdir drivers
+  - echo google-chrome-stable --version
 install:
   - pip install -r requirements.txt
   # - webdrivermanager chrome --linkpath drivers`
