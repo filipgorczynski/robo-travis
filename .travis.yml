@@ -26,7 +26,12 @@ install:
   # - webdrivermanager chrome --linkpath drivers`
   - export DISPLAY=':99.0'
   # - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
-
+before_script:
+  # google chrome standalone driver
+  - wget http://chromedriver.storage.googleapis.com/75.0.3770.8/chromedriver_linux64.zip
+  - unzip chromedriver_linux64.zip
+  - sudo mv chromedriver /usr/local/bin
+  - sudo chmod a+x /usr/local/bin/chromedriver
 script: 
   - xvfb-run --server-args="-screen 0, 1920x1080x24"  #  make test  #  > /dev/null 2>&1 &
   - robot tests/
