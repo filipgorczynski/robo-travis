@@ -9,27 +9,18 @@ addons:
   apt:
     packages:
       - xvfb
-      - google-chrome-stable
+      # - google-chrome-stable
   chrome: stable
 services:
   - xvfb
 sudo: true
 cache:
   pip: true
-# before_install:
-  # start your web application and listen on `localhost`
-  # - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 before_install:
-  - apt-get install -y xvfb
   - mkdir drivers
-  - echo google-chrome-stable --version
 install:
   - pip install -r requirements.txt
-  # - webdrivermanager chrome --linkpath drivers`
   - export DISPLAY=':99.0'
-  # - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
-  - google-chrome --version
-  - chromedriver --version
 before_script:
   # google chrome standalone driver
   - wget http://chromedriver.storage.googleapis.com/75.0.3770.8/chromedriver_linux64.zip
@@ -37,4 +28,6 @@ before_script:
   - sudo mv chromedriver /usr/local/bin
   - sudo chmod a+x /usr/local/bin/chromedriver
 script: 
+  - google-chrome --version
+  - chromedriver --version
   - xvfb-run --server-args="-screen 0, 1920x1080x24" robot tests/ #  make test  #  > /dev/null 2>&1 &
