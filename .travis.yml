@@ -20,10 +20,10 @@ cache:
   # start your web application and listen on `localhost`
   # - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 before_install:
-  - mkdir ~/drivers
+  - mkdir drivers
 install:
   - pip install -r requirements.txt
-  - webdrivermanager chrome --linkpath ~/drivers`
+  - webdrivermanager chrome --linkpath drivers`
   - export DISPLAY=':99.0'
   # - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
 
