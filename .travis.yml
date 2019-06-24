@@ -22,12 +22,13 @@ before_install:
 install:
   - pip install -r requirements.txt
 before_script:
+  # moved hire due to time to run
+  - python robotix/manage.py runserver &
   # google chrome standalone driver
   # Keep in mind Xenial Chrome Stable version and Chromedriver version
   - wget http://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver_linux64.zip
   - unzip chromedriver_linux64.zip
   - sudo mv chromedriver /usr/local/bin
   - sudo chmod a+x /usr/local/bin/chromedriver
-  - python robotix/manage.py runserver &
 script:
   - robot tests/
