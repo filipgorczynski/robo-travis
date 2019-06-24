@@ -14,9 +14,9 @@ Get Helion Homepage
     Title Should Be         Księgarnia internetowa informatyczna Helion.pl - wydawnictwo informatyczne, książki, kursy
 
 Check Filip Homepage
-    Open Browser            ${LOCAL_SERVER}/filip   ${BROWSER}
+    Open Browser            ${LOCAL_SERVER}filip   ${BROWSER}
     Page Should Contain     FiliP
 
 Check SynApps Homepage
-    Open Browser            ${LOCAL_SERVER}/synapps   ${BROWSER}
+    Open Browser            ${LOCAL_SERVER}synapps   ${BROWSER}
     Page Should Contain     SynappS
