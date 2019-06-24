@@ -28,6 +28,6 @@ before_script:
   - unzip chromedriver_linux64.zip
   - sudo mv chromedriver /usr/local/bin
   - sudo chmod a+x /usr/local/bin/chromedriver
-  - python manage.py runserver &
+  - python robotix/manage.py runserver &
 script:
   - robot tests/
