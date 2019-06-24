@@ -15,13 +15,14 @@ services:
 sudo: true
 cache:
   pip: true
-before_install:
-  - mkdir drivers
+# before_install:
+#   - mkdir drivers
   # - "export DISPLAY=:99.0"
   # - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
 install:
   - pip install -r requirements.txt
 before_script:
+  - python robotix/manage.py migrate
   # moved hire due to time to run
   - python robotix/manage.py runserver &
   # google chrome standalone driver
