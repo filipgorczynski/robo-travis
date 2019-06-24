@@ -9,7 +9,6 @@ addons:
   apt:
     packages:
       - xvfb
-      # - google-chrome-stable
   chrome: stable
 services:
   - xvfb
@@ -18,17 +17,16 @@ cache:
   pip: true
 before_install:
   - mkdir drivers
+  - "export DISPLAY=:99.0"
+  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
 install:
   - pip install -r requirements.txt
-  # - export DISPLAY=':99.0'
 before_script:
   # google chrome standalone driver
+  # Keep in mind Xenial Chrome Stable version and Chromedriver version
   - wget http://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver_linux64.zip
   - unzip chromedriver_linux64.zip
   - sudo mv chromedriver /usr/local/bin
   - sudo chmod a+x /usr/local/bin/chromedriver
-script: 
-  # - google-chrome --version
-  # - chromedriver --version
-  # - xvfb-run --server-args="-screen 0, 1920x1080x24" #  make test  #  > /dev/null 2>&1 &
+script:
   - robot tests/
