@@ -18,6 +18,7 @@ cache:
 install:
   - pip install -r requirements.txt
 before_script:
+  - echo $PATH
   - python robotix/manage.py migrate
   # moved hire due to time to run
   - python robotix/manage.py runserver &
