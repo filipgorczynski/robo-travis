@@ -27,6 +27,7 @@ before_script:
   # - unzip chromedriver_linux64.zip
   # - sudo mv chromedriver /usr/local/bin
   # - sudo chmod a+x /usr/local/bin/chromedriver
+  - echo "PATH: " $PATH
   - mkdir bin
   - webdrivermanager firefox chrome --linkpath ./bin
 script:
