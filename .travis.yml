@@ -27,6 +27,7 @@ before_script:
   # - unzip chromedriver_linux64.zip
   # - sudo mv chromedriver /usr/local/bin
   # - sudo chmod a+x /usr/local/bin/chromedriver
-  - webdrivermanager firefox chrome --linkpath /usr/local/bin
+  - mkdir bin
+  - webdrivermanager firefox chrome --linkpath ./bin
 script:
   - robot tests/
