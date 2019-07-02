@@ -21,14 +21,17 @@ before_script:
   - python robotix/manage.py migrate
   # moved hire due to time to run
   - python robotix/manage.py runserver &
-  # google chrome standalone driver
   # Keep in mind Xenial Chrome Stable version and Chromedriver version
-  # - wget http://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver_linux64.zip
-  # - unzip chromedriver_linux64.zip
-  # - sudo mv chromedriver /usr/local/bin
-  # - sudo chmod a+x /usr/local/bin/chromedriver
-  - echo "PATH: " $PATH
-  - mkdir bin
-  - webdrivermanager firefox chrome --linkpath ./bin
+  - wget http://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver_linux64.zip
+  - unzip chromedriver_linux64.zip
+  - sudo mv chromedriver /usr/local/bin
+  - sudo chmod a+x /usr/local/bin/chromedriver
+  
+  # Install Firefox (Gecko) driver
+  - wget https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz
+  - tar -xvzf geckodriver-v0.24.0-linux64.tar.gz
+  - sudo mv geckodriver /usr/local/bin
+  - sudo chmod a+x /usr/local/bin/geckodriver
+  
 script:
   - robot tests/
