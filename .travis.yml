@@ -1,27 +1,32 @@
+dist: xenial
 notifications:
   email: false
-
+sudo: required
 language: python
 python:
   - "3.7"
-dist: xenial
+cache:
+  pip: true
 addons:
   apt:
     packages:
       - xvfb
   chrome: stable
+  # https://firefox-source-docs.mozilla.org/testing/geckodriver/geckodriver/Support.html
+  firefox: "57.0"
 services:
   - xvfb
-sudo: required
-cache:
-  pip: true
+before_install:
+  - set +e
+  - sudo service xvfb stop
+  - sudo sed -i 's/1024x768/1280x1024/g' /etc/systemd/system/xvfb.service
+  - sudo service xvfb start 
 install:
   - pip install -r requirements.txt
 before_script:
-  - echo $PATH
-  - python robotix/manage.py migrate
+  - python mysite/manage.py migrate
   # moved hire due to time to run
-  - python robotix/manage.py runserver &
+  - python mysite/manage.py runserver &
   # Keep in mind Xenial Chrome Stable version and Chromedriver version
   - wget http://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver_linux64.zip
   - unzip chromedriver_linux64.zip
@@ -35,4 +40,8 @@ before_script:
   - sudo chmod a+x /usr/local/bin/geckodriver
   
 script:
-  - robot tests/
+  - robot -d ./results tests/
+
+after_script:
+  - file results/selenium-screenshot-1.png
+

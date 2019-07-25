@@ -1,22 +1,24 @@
 *** Settings ***
-Documentation               Test Helion Promotion Book
+Documentation               Test Suite Documentation
 Library                     SeleniumLibrary
 Test Teardown               Close Browser
 
 *** Variables ***
-${SERVER}                   https://helion.pl/
-${LOCAL_SERVER}             http://127.0.0.1:8000/
-${BROWSER}                  Chrome
+${Server}                   https://helion.pl/
+${LocalServer}              http://127.0.0.1:8000/
+${Browser}                  chrome
 
 *** Test Cases ***
 Get Helion Homepage
-    Open Browser            ${SERVER}   ${BROWSER}
+    Open Browser            ${Server}   ${Browser}
     Title Should Be         Księgarnia internetowa informatyczna Helion.pl - wydawnictwo informatyczne, książki, kursy
 
 Check Filip Homepage
-    Open Browser            ${LOCAL_SERVER}filip   ${BROWSER}
+    Open Browser            ${LocalServer}filip   ${Browser}
     Page Should Contain     FiliP
 
-Check SynApps Homepage
-    Open Browser            ${LOCAL_SERVER}synapps   ${BROWSER}
-    Page Should Contain     SynappS
+Check Helion Promotion
+    [Documentation]         Failing tests for screenshot
+
+    Open Browser            ${Server}   ${Browser}
+    Title Should Be         Amazon.com
