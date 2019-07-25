@@ -19,7 +19,7 @@ services:
 before_install:
   - set +e
   - sudo service xvfb stop
-  - sudo sed -i 's/1024x768/1280x1024/g' /etc/systemd/system/xvfb.service
+  - sudo sed -i 's/1024x768/1680x1050/g' /etc/systemd/system/xvfb.service
   - sudo service xvfb start 
 install:
   - pip install -r requirements.txt
